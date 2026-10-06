@@ -23,6 +23,7 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
   const [open, setOpen] = useState(false)
+  const [onLight, setOnLight] = useState(false)
   const status = useOpenStatus()
   const go = useSectionNav()
 
@@ -31,6 +32,12 @@ export function Nav() {
     setScrolled(y > 24)
     setHidden(y > 480 && y > prev + 2)
     if (y < prev - 2) setHidden(false)
+    // Über der hellen Speisekarte wird die Navigation ebenfalls hell – wie bei Apple
+    const menu = document.getElementById('speisekarte')
+    if (menu) {
+      const r = menu.getBoundingClientRect()
+      setOnLight(r.top <= 30 && r.bottom > 30)
+    } else setOnLight(false)
   })
 
   // Sticky-Elemente (z. B. die Menüleiste) rücken nach oben, wenn die Navigation ausblendet
@@ -54,7 +61,7 @@ export function Nav() {
   return (
     <>
       <motion.header
-        className={`nav ${scrolled ? 'nav--solid' : ''} ${open ? 'nav--open' : ''}`}
+        className={`nav ${scrolled ? 'nav--solid' : ''} ${onLight && !open ? 'nav--light' : ''} ${open ? 'nav--open' : ''}`}
         animate={{ y: hidden && !open ? '-110%' : '0%' }}
         transition={{ duration: 0.45, ease }}
       >

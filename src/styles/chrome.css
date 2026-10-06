@@ -85,6 +85,19 @@
     backdrop-filter 0.5s var(--ease);
 }
 
+/* Füllt den Bereich über der Navigation (z. B. hinter Safaris Adressleiste auf dem iPhone),
+   damit dort kein durchscrollender Inhalt sichtbar ist */
+.nav::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 160px;
+  background: inherit;
+  pointer-events: none;
+}
+
 .nav--solid {
   background: rgba(10, 8, 6, 0.72);
   border-bottom-color: rgba(233, 207, 143, 0.08);
@@ -225,6 +238,63 @@
   height: 1px;
   background: linear-gradient(90deg, var(--gold-700), var(--gold-200));
   transform-origin: left;
+}
+
+/* Helle Variante über der Speisekarte */
+.nav--light {
+  color: var(--ink);
+}
+
+.nav--light.nav--solid {
+  background: rgba(244, 239, 230, 0.82);
+  border-bottom-color: rgba(26, 21, 18, 0.08);
+}
+
+.nav--light .nav__links a {
+  color: rgba(26, 21, 18, 0.66);
+}
+
+.nav--light .nav__links a:hover {
+  color: var(--ink);
+}
+
+.nav--light .nav__links a::after {
+  background: var(--gold-700);
+}
+
+.nav--light .nav__burger span {
+  background: var(--ink);
+}
+
+.nav--light .status-pill {
+  border-color: rgba(26, 21, 18, 0.1);
+  background: rgba(26, 21, 18, 0.05);
+  color: var(--ink-muted);
+}
+
+.nav--light .status-pill.is-open {
+  color: var(--ink);
+}
+
+.nav--light .nav__progress {
+  background: linear-gradient(90deg, var(--gold-500), var(--gold-700));
+}
+
+/* Keine transform-Transition auf .nav – das Ein-/Ausblenden steuert Motion */
+.nav,
+.nav__brand,
+.nav__links a {
+  transition:
+    background 0.5s var(--ease),
+    border-color 0.5s var(--ease),
+    color 0.5s var(--ease);
+}
+
+.nav__burger span {
+  transition:
+    background 0.5s var(--ease),
+    transform 0.5s var(--ease),
+    top 0.5s var(--ease);
 }
 
 .mobile-menu {
