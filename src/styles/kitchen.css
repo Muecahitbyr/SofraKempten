@@ -1,0 +1,339 @@
+/* ==========================================================================
+   Küche & Service – internes Bestell-Board (/kueche)
+   ========================================================================== */
+.kitchen-login {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  padding: 24px;
+  background: radial-gradient(ellipse at 50% 30%, #1d150d, var(--bg) 65%);
+}
+
+.kitchen-login__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(380px, 100%);
+  padding: 36px 28px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.kitchen-login__card img {
+  border-radius: 50%;
+  box-shadow: 0 0 50px -8px rgba(212, 160, 80, 0.5);
+}
+
+.kitchen-login__card h1 {
+  font-size: 28px;
+  letter-spacing: -0.035em;
+}
+
+.kitchen-login__card input {
+  width: 100%;
+  height: 54px;
+  padding: 0 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  outline: 0;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  text-align: center;
+}
+
+.kitchen-login__card input:focus {
+  border-color: var(--gold-300);
+}
+
+.kitchen-login__card .btn {
+  width: 100%;
+}
+
+.kitchen-login__error {
+  color: #ffb4a3;
+  font-size: 14px;
+}
+
+.kitchen {
+  min-height: 100svh;
+  padding: 0 clamp(14px, 2vw, 28px) 28px;
+  background: var(--bg);
+}
+
+.kitchen__bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  background: rgba(10, 8, 6, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.kitchen__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kitchen__brand img {
+  border-radius: 50%;
+}
+
+.kitchen__brand strong {
+  display: block;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.kitchen__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--faint);
+  font-size: 12px;
+}
+
+.kitchen__live i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8e8e93;
+}
+
+.kitchen__live.is-live {
+  color: var(--muted);
+}
+
+.kitchen__live.is-live i {
+  background: var(--green);
+  animation: pulse 2.2s var(--ease) infinite;
+}
+
+.kitchen__tools {
+  display: flex;
+  gap: 8px;
+}
+
+.kitchen__error {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(255, 99, 71, 0.12);
+  color: #ffb4a3;
+  cursor: pointer;
+}
+
+.kitchen__cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.kitchen__col h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.kitchen__col h2 span {
+  display: grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font-size: 12px;
+}
+
+.kitchen__col:first-child h2 span {
+  background: var(--gold-300);
+  color: var(--ink);
+}
+
+.kitchen__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kitchen__empty {
+  padding: 30px 0;
+  border: 1px dashed var(--line);
+  border-radius: 18px;
+  color: var(--faint);
+  font-size: 14px;
+  text-align: center;
+}
+
+.kcard {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.kcard--neu {
+  border-color: rgba(240, 217, 156, 0.45);
+  background: linear-gradient(180deg, #221a10, var(--surface));
+}
+
+.kcard.is-urgent {
+  border-color: #ff8a5c;
+  box-shadow: 0 0 0 1px rgba(255, 138, 92, 0.3);
+}
+
+.kcard--serviert,
+.kcard--storniert {
+  opacity: 0.6;
+}
+
+.kcard--storniert .kcard__lines {
+  text-decoration: line-through;
+}
+
+.kcard__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.kcard__table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f5e0a6, #c49a4c);
+  color: var(--ink);
+  line-height: 1;
+}
+
+.kcard__table span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.kcard__table strong {
+  font-size: 30px;
+  letter-spacing: -0.04em;
+}
+
+.kcard__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.kcard__meta span:first-child {
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.kcard__state {
+  color: var(--gold-300);
+}
+
+.kcard__lines {
+  padding: 12px 0 4px;
+}
+
+.kcard__lines li {
+  display: flex;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 17px;
+}
+
+.kcard__lines b {
+  min-width: 30px;
+  color: var(--gold-200);
+}
+
+.kcard__lines em {
+  display: block;
+  color: var(--gold-300);
+  font-size: 14px;
+  font-style: normal;
+}
+
+.kcard__note {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 196, 92, 0.1);
+  color: #ffd99a;
+  font-size: 15px;
+}
+
+.kcard__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.kcard__total {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.kcard__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.kbtn {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 12px;
+  background: var(--gold-300);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 650;
+  transition: filter 0.2s;
+}
+
+.kbtn:hover {
+  filter: brightness(1.08);
+}
+
+.kbtn--ghost {
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .kitchen__cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

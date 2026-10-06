@@ -1,0 +1,186 @@
+/* ==========================================================================
+   Besuch – Adresse, Zeiten, Karte
+   ========================================================================== */
+.visit {
+  padding: clamp(110px, 14vw, 170px) 0 clamp(40px, 6vw, 80px);
+  background: var(--bg);
+}
+
+.visit__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: stretch;
+}
+
+.visit__block + .visit__block {
+  margin-top: 52px;
+}
+
+.visit__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gold-400);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.visit__address {
+  margin: 14px 0 8px;
+  font-size: clamp(30px, 3.2vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.visit__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.hours {
+  margin-top: 14px;
+}
+
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hours li.is-closed {
+  color: var(--faint);
+}
+
+.hours li.is-today {
+  color: var(--gold-200);
+  font-weight: 600;
+}
+
+.hours em {
+  margin-left: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--gold-300);
+  color: var(--ink);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  vertical-align: 2px;
+}
+
+.visit__map {
+  min-height: 520px;
+}
+
+.map-card {
+  position: relative;
+  height: 100%;
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: radial-gradient(ellipse at 50% 45%, #1d160f 0%, #0e0b08 70%);
+}
+
+.map-card iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: invert(0.9) hue-rotate(180deg) saturate(0.5) brightness(0.95) contrast(0.9);
+}
+
+.map-card__placeholder {
+  position: absolute;
+  inset: 0;
+}
+
+.map-card__art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: rgba(233, 207, 143, 0.08);
+  stroke-width: 1.5;
+}
+
+.map-card__river {
+  stroke: rgba(120, 150, 170, 0.14);
+  stroke-width: 22;
+}
+
+.map-card__road {
+  stroke: rgba(233, 207, 143, 0.2);
+  stroke-width: 7;
+}
+
+.map-card__pin {
+  position: absolute;
+  top: 46%;
+  left: 49%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  translate: -50% -50%;
+}
+
+.map-card__pin .pin {
+  position: relative;
+}
+
+.map-card__label {
+  padding: 6px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(10, 8, 6, 0.75);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-style: italic;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.map-card__consent {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px 12px 12px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(10, 8, 6, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.map-card__consent p {
+  color: var(--faint);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .visit__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .visit__map,
+  .map-card {
+    min-height: 420px;
+  }
+}

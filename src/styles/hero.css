@@ -1,0 +1,340 @@
+/* ==========================================================================
+   Hero – 240vh Scroll-Bühne mit gepinntem Viewport
+   ========================================================================== */
+.hero {
+  position: relative;
+  height: 240vh;
+}
+
+.hero__sticky {
+  position: sticky;
+  top: 0;
+  display: grid;
+  place-items: center;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__glow {
+  position: absolute;
+  left: -10vw;
+  right: -10vw;
+  bottom: -38vh;
+  height: 90vh;
+  z-index: -3;
+  background:
+    radial-gradient(ellipse 50% 50% at 50% 60%, rgba(232, 120, 44, 0.5), transparent 70%),
+    radial-gradient(ellipse 70% 60% at 50% 70%, rgba(196, 154, 76, 0.22), transparent 75%);
+  filter: blur(24px);
+  will-change: transform, opacity;
+}
+
+.hero__grain {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(240, 217, 156, 0.07), transparent 70%),
+    linear-gradient(180deg, transparent 60%, rgba(10, 8, 6, 0.9));
+}
+
+.hero__embers {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 70% at 50% 50%, transparent 55%, rgba(10, 8, 6, 0.85) 100%);
+}
+
+.hero__emblem-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  perspective: 1200px;
+}
+
+.hero__emblem {
+  position: relative;
+  width: clamp(220px, 32vw, 420px);
+  aspect-ratio: 1;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.hero__emblem img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(233, 207, 143, 0.25),
+    0 40px 120px -20px rgba(224, 140, 60, 0.55),
+    0 0 160px -40px rgba(240, 200, 120, 0.6);
+}
+
+.hero__halo {
+  position: absolute;
+  inset: -9%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(240, 217, 156, 0.85) 40deg,
+    transparent 90deg,
+    transparent 180deg,
+    rgba(224, 140, 60, 0.6) 230deg,
+    transparent 280deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 66%, #000 67%, #000 68.5%, transparent 69.5%);
+  mask: radial-gradient(circle, transparent 66%, #000 67%, #000 68.5%, transparent 69.5%);
+  animation: spin 9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero__claim {
+  margin-top: clamp(24px, 4vh, 40px);
+  font-size: clamp(30px, 4.4vw, 62px);
+  line-height: 1;
+  text-align: center;
+}
+
+.hero__claim em {
+  color: var(--gold-200);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  will-change: transform, opacity, filter;
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(20px, 3vh, 32px);
+  padding: 6px 16px 6px 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hero__badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f5e0a6, #c49a4c);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero__title {
+  font-size: clamp(64px, 12.5vw, 196px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
+.hero__title-sub {
+  display: inline-block;
+  margin-top: 0.1em;
+  font-size: 0.42em;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--text);
+}
+
+.hero__title-sub em {
+  color: var(--gold-200);
+}
+
+.hero__lead {
+  max-width: 520px;
+  margin-top: clamp(20px, 3vh, 30px);
+  color: var(--muted);
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.45;
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: clamp(26px, 4vh, 40px);
+}
+
+.hero__footer-wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+}
+
+.hero__footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  padding-bottom: calc(26px + env(safe-area-inset-bottom));
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero__meta--right {
+  justify-content: flex-end;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    height: 200vh;
+  }
+  .hero__footer {
+    grid-template-columns: 1fr;
+  }
+  .hero__meta--right {
+    display: none;
+  }
+  .hero__eyebrow {
+    font-size: 12px;
+  }
+}
+
+/* ==========================================================================
+   Laufband
+   ========================================================================== */
+.marquee {
+  position: relative;
+  padding: clamp(40px, 7vw, 90px) 0;
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: var(--bg);
+}
+
+.marquee__row {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee__track {
+  display: flex;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding-right: 0.35em;
+  font-size: clamp(44px, 7.6vw, 120px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+}
+
+.marquee__star {
+  width: 0.28em;
+  height: 0.28em;
+  fill: var(--gold-400);
+}
+
+.marquee__row--outline .marquee__item {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(233, 207, 143, 0.55);
+}
+
+.marquee__row--outline .marquee__star {
+  fill: none;
+  stroke: rgba(233, 207, 143, 0.55);
+}
+
+/* ==========================================================================
+   Manifest – Wort für Wort
+   ========================================================================== */
+.manifesto {
+  position: relative;
+  height: 200vh;
+}
+
+.manifesto__sticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100svh;
+}
+
+.manifesto__text {
+  max-width: 1120px;
+  font-size: clamp(34px, 5.6vw, 84px);
+  font-weight: 650;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  word-spacing: 0.04em;
+}
+
+
+.manifesto__accent {
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  padding-right: 0.06em;
+}
+
+.manifesto__progress {
+  width: min(320px, 60vw);
+  height: 2px;
+  margin-top: clamp(32px, 6vh, 64px);
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.manifesto__progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-700), var(--gold-200));
+  transform-origin: left;
+}

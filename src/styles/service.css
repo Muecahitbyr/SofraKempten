@@ -1,0 +1,455 @@
+/* ==========================================================================
+   Service-Ruf, Wünsche pro Gericht
+   ========================================================================== */
+
+/* Glocke neben der Warenkorb-Leiste */
+.service-fab {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 58px;
+  height: 58px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(22, 18, 14, 0.78);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.8);
+  color: var(--gold-200);
+  backdrop-filter: saturate(180%) blur(22px);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  pointer-events: auto;
+  transition: border-color 0.3s;
+}
+
+.service-fab:hover {
+  border-color: var(--gold-300);
+}
+
+.service-fab--wide {
+  width: auto;
+  padding: 0 22px 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.service-fab--wide svg {
+  color: var(--gold-200);
+}
+
+.service-fab__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #04210c;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Hinweis in der Speisekarte */
+.service-hint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 12px 16px 12px 12px;
+  border: 1px solid rgba(26, 21, 18, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.65);
+  color: var(--ink);
+  text-align: left;
+  transition:
+    border-color 0.3s,
+    transform 0.4s var(--ease);
+}
+
+.service-hint:hover {
+  border-color: var(--gold-500);
+  transform: translateY(-2px);
+}
+
+.service-hint > span:nth-child(2) {
+  flex: 1;
+}
+
+.service-hint strong {
+  display: block;
+  font-size: 15px;
+}
+
+.service-hint small {
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+.service-hint__icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--gold-200);
+}
+
+/* Service-Sheet */
+.service-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.service-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  text-align: left;
+  transition:
+    border-color 0.3s,
+    background 0.3s;
+}
+
+.service-card:hover:not(:disabled),
+.service-card--bill.is-open {
+  border-color: var(--gold-300);
+  background: rgba(233, 207, 143, 0.06);
+}
+
+.service-card:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.service-card--bill {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+}
+
+.service-card__row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  text-align: left;
+}
+
+.service-card__icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f5e0a6, #c49a4c);
+  color: var(--ink);
+}
+
+.service-card__text strong {
+  display: block;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.service-card__text small {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.service-card__pay {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  overflow: hidden;
+  padding: 0 16px 16px;
+}
+
+.call-status {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.call-status li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(48, 209, 88, 0.25);
+  border-radius: 16px;
+  background: rgba(48, 209, 88, 0.06);
+}
+
+.call-status li.is-done {
+  border-color: var(--line);
+  background: transparent;
+  opacity: 0.75;
+}
+
+.call-status__icon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  color: var(--green);
+}
+
+.call-status strong {
+  display: block;
+  font-size: 15px;
+}
+
+.call-status small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Abkürzung im Checkout */
+.table-service {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.table-service button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 13px;
+  transition: border-color 0.3s;
+}
+
+.table-service button:hover {
+  border-color: var(--gold-300);
+}
+
+/* Wunsch pro Gericht */
+.sheet__list li {
+  border-bottom: 1px solid var(--line);
+}
+
+.sheet__list .sheet__item {
+  border-bottom: 0;
+  padding-bottom: 8px;
+}
+
+.line-note__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  color: var(--gold-300);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.line-note__add:hover {
+  color: var(--gold-200);
+}
+
+.line-note {
+  overflow: hidden;
+  padding-bottom: 14px;
+}
+
+.line-note__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.wish {
+  padding: 6px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 13px;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s;
+}
+
+.wish:hover {
+  color: var(--text);
+}
+
+.wish.is-active {
+  border-color: transparent;
+  background: var(--gold-300);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.line-note__input {
+  width: 100%;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  outline: 0;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.line-note__input:focus {
+  border-color: var(--gold-300);
+}
+
+.order-done__note {
+  display: block;
+  color: var(--gold-300) !important;
+}
+
+/* Küche: Service-Rufe */
+.calls {
+  overflow: hidden;
+}
+
+.calls__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 18px;
+}
+
+.call {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 300px;
+  padding: 12px 12px 12px 12px;
+  border: 1px solid rgba(48, 209, 88, 0.5);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(48, 209, 88, 0.14), rgba(48, 209, 88, 0.04));
+  animation: call-glow 1.8s var(--ease) infinite;
+}
+
+.call--rechnung {
+  border-color: rgba(100, 170, 255, 0.55);
+  background: linear-gradient(180deg, rgba(100, 170, 255, 0.16), rgba(100, 170, 255, 0.04));
+  animation-name: call-glow-blue;
+}
+
+@keyframes call-glow {
+  50% {
+    box-shadow: 0 0 0 4px rgba(48, 209, 88, 0.15);
+  }
+}
+
+@keyframes call-glow-blue {
+  50% {
+    box-shadow: 0 0 0 4px rgba(100, 170, 255, 0.15);
+  }
+}
+
+.call__table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: var(--text);
+  color: var(--ink);
+  line-height: 1;
+}
+
+.call__table span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.call__table strong {
+  font-size: 26px;
+}
+
+.call__text {
+  flex: 1;
+}
+
+.call__text strong {
+  display: block;
+  font-size: 17px;
+}
+
+.call__text span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.kcard__line-note {
+  display: block;
+  margin-top: 2px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: rgba(255, 196, 92, 0.12);
+  color: #ffd99a;
+  font-size: 14px;
+  font-style: normal;
+  width: fit-content;
+}
+
+/* Tisch abmelden direkt an der Leiste */
+.service-fab-wrap {
+  position: relative;
+  pointer-events: auto;
+}
+
+.service-fab__close {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: #1c1610;
+  color: var(--muted);
+  box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.8);
+  transition:
+    color 0.25s,
+    background 0.25s;
+}
+
+.service-fab__close:hover {
+  background: var(--text);
+  color: var(--ink);
+}
+
+.sheet__links {
+  display: inline-flex;
+  gap: 16px;
+}
